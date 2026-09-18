@@ -45,5 +45,3 @@ def cuadrados_medios(seed, n):
         seed_aux = lista_random[i]
     
     return lista_random
-
-
