@@ -7,5 +7,71 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+    <header class="app-header">
+        <h1>PRNG Simulation Dashboard</h1>
+        <p>Generación y Análisis Estadístico de Números Pseudoaleatorios</p>
+    </header>
+    <main class="dashboard-container">
+        <!--TARJETA DEL FORMULARIO: CONGRUENCIAL MIXTO-->
+        <section class="card">
+            <h2>Metodo Congruencial Mixto</h2>
+            <form id="mixto-form">
+                <div class="form-group">
+                    <label for="seed">Semilla Inicial ($X_0$):</label>
+                    <input type="number" id="seed" name="seed" required placeholder="Ej: 3456">
+                </div>
+
+                <div class="form-group">
+                    <label for="a">Multiplicador ($a$):</label>
+                    <input type="number" id="a" name="a" required placeholder="Ej: 5">
+                </div>
+
+                <div class="form-group">
+                    <label for="c">Incremento ($c$):</label>
+                    <input type="number" id="c" name="c" required placeholder="Ej: 7">
+                </div>
+
+                <div class="form-group">
+                    <label for="m">Módulo ($m$):</label>
+                    <input type="number" id="m" name="m" required placeholder="Ej: 8">
+                </div>
+
+                <div class="form-group">
+                    <label for="iterations">Iteraciones:</label>
+                    <input type="number" id="iterations" name="iterations" value="10" min="1">
+                </div>  
+                <button type="submit" class="btn-primary">Simular</button>
+            </form>
+        </section>
+        <!-- Tarjeta de Resultados: Tabla y Gráfico -->
+        <section class="card results-card" id="results-section" style="display: none;">
+            <h2>Resultados de la Simulación</h2>
+
+            <!-- Contenedor para el gráfico dinámico -->
+            <div id="chart-container" class="chart-box">
+                <!-- Aquí Plotly o Matplotlib renderizarán el gráfico en la Semana 3 -->
+                <!--En processo -->
+            </div>
+
+            <!-- Tabla de datos -->
+            <div class="table-container">
+                <table id="results-table">
+                    <thead>
+                        <tr>
+                            <th>i</th>
+                            <th>$X_i$ (Valor Entero)</th>
+                            <th>$U_i$ (Normalizado $[0, 1)$)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body">
+                        <!-- Las filas se insertarán dinámicamente con JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <!-- Script de lógica de JavaScript -->
+    <script src="app.js"></script>
 </body>
+</html>
