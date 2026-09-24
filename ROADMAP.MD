@@ -21,14 +21,14 @@ Desarrollar un **Dashboard Visual Interactivo** que consuma una **API REST en Py
 ## 📅 Plan de Trabajo (Paso a Paso)
 
 ### 🔴 Semana 1: Backend & API REST (FastAPI)
-* [ ] Refactorizar la lógica existente de los algoritmos de PRNGs (`cuadrados_medios`, `productos_medios`, `congruencial_mixto`, `multiplicativo`, `aditivo`) en módulos reutilizables en Python.
-* [ ] Configurar entorno virtual e instalar dependencias (`fastapi`, `uvicorn`, `pydantic`).
-* [ ] Crear el servidor backend en `backend/main.py`.
-* [ ] Diseñar los endpoints `POST`:
+* [✔️] Refactorizar la lógica existente de los algoritmos de PRNGs (`cuadrados_medios`, `productos_medios`, `congruencial_mixto`, `multiplicativo`, `aditivo`) en módulos reutilizables en Python.
+* [✔️] Configurar entorno virtual e instalar dependencias (`fastapi`, `uvicorn`, `pydantic`).
+* [✔️] Crear el servidor backend en `backend/main.py`.
+* [✔️] Diseñar los endpoints `POST`:
   * `/api/v1/generate/congruential`
   * `/api/v1/generate/middle-square`
   * `/api/v1/generate/middle-product`
-* [ ] Probar y validar la API interactiva en `http://127.0.0.1:8000/docs`.
+* [✔️] Probar y validar la API interactiva en `http://127.0.0.1:8000/docs`.
 
 ### 🟡 Semana 2: Frontend Base + Integración Asíncrona (`fetch`)
 * [ ] Crear la estructura web base en `frontend/index.html` y `styles.css`.
