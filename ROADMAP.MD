@@ -31,8 +31,8 @@ Desarrollar un **Dashboard Visual Interactivo** que consuma una **API REST en Py
 * [✔️] Probar y validar la API interactiva en `http://127.0.0.1:8000/docs`.
 
 ### 🟡 Semana 2: Frontend Base + Integración Asíncrona (`fetch`)
-* [ ] Crear la estructura web base en `frontend/index.html` y `styles.css`.
-* [ ] Construir formularios dinámicos para ingresar parámetros ($X_0$, $a$, $c$, $m$, iteraciones).
+* [✔️] Crear la estructura web base en `frontend/index.html` y `styles.css`.
+* [✔️] Construir formularios dinámicos para ingresar parámetros ($X_0$, $a$, $c$, $m$, iteraciones).
 * [ ] Implementar script en JavaScript (`app.js`) utilizando `fetch()` para enviar peticiones `POST` al backend.
 * [ ] Mostrar las tablas de resultados normalizados $U_i$ en la interfaz en tiempo real sin recargar la página.
 

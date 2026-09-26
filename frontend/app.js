@@ -68,3 +68,67 @@ document.getElementById('mixto-form').addEventListener('submit', async function(
 });
 
 
+
+/**
+ * ============================================================================
+ * 📌 GUÍA Y ROADMAP DE REFACTORIZACIÓN MODULAR (FRONTEND)
+ * ============================================================================
+ *
+ * PROPÓSITO:
+ * Convertir el código monolítico de app.js en una arquitectura modular limpia
+ * utilizando ES Modules nativos (import/export).
+ *
+ * ----------------------------------------------------------------------------
+ * 🚨 ORDEN ESTRICTO DE MODIFICACIÓN Y CREACIÓN DE ARCHIVOS
+ * ----------------------------------------------------------------------------
+ * Sigue este orden de "abajo hacia arriba" (construir cimientos primero) para
+ * evitar errores de referencias no definidas ("ReferenceError") o dependencias rotas:
+ *
+ * 1️⃣ CREAR: frontend/js/api.js (Módulo de Peticiones HTTP / Fetch)
+ *    - ¿Qué hace?: Contiene únicamente las funciones asíncronas fetch() hacia FastAPI.
+ *    - Dependencias: Ninguna (no toca el DOM ni conoce la interfaz).
+ *    - Responsabilidad:
+ *      * Recibir los objetos con parámetros (seed, a, c, m, etc.).
+ *      * Enviar la petición POST al endpoint correspondiente (/api/v1/generate/...).
+ *      * Retornar los datos en formato JSON procesado.
+ *      * Lanzar errores si la red o el backend fallan.
+ *    - Exporta: fetchCongruencialMixto(), fetchCongruencialMultiplicativo(), etc.
+ *
+ * 2️⃣ CREAR: frontend/js/ui.js (Módulo de Manipulación del DOM)
+ *    - ¿Qué hace?: Funciones puras de renderizado y control visual.
+ *    - Dependencias: Ninguna (no hace peticiones de red).
+ *    - Responsabilidad:
+ *      * Limpiar y rellenar la tabla HTML (<tbody>) iterando sobre result.data.
+ *      * Formatear los valores decimales Ui con toFixed(4).
+ *      * Mostrar u ocultar la tarjeta de resultados (results-section).
+ *      * Mostrar alertas o mensajes de error en pantalla.
+ *    - Exporta: renderResultsTable(), clearResults(), showErrorAlert().
+ *
+ * 3️⃣ REFACTORIZAR: frontend/js/app.js (El Orquestador / Punto de Entrada)
+ *    - Ubicación actual: Mover a frontend/js/app.js.
+ *    - ¿Qué hace?: Conecta los eventos del usuario con los módulos api.js y ui.js.
+ *    - Pasos en este archivo:
+ *      a) Importar las funciones de api.js y ui.js al inicio del archivo:
+ *         import { fetchCongruencialMixto } from './api.js';
+ *         import { renderResultsTable, showErrorAlert } from './ui.js';
+ *      b) Escuchar los eventos 'submit' de los formularios.
+ *      c) Prevenir la recarga de página con event.preventDefault().
+ *      d) Extraer los valores numéricos del formulario con parseInt().
+ *      e) Llamar a la función de api.js con await.
+ *      f) Enviar la respuesta recibida a la función renderResultsTable() de ui.js.
+ *
+ * 4️⃣ ACTUALIZAR: frontend/index.html (Vinculación Modular en HTML)
+ *    - ¿Qué hace?: Indicarle al navegador que app.js opera como un módulo ES6.
+ *    - Cambio en la etiqueta script al final del <body>:
+ *      <script type="module" src="js/app.js"></script>
+ *
+ * ----------------------------------------------------------------------------
+ * 💡 RECORDATORIOS TÉCNICOS CLAVE:
+ * - La propiedad type="module" en HTML es INDISPENSABLE para habilitar 'import/export'.
+ * - Siempre usar preventDefault() para evitar el refresco por defecto del formulario.
+ * - Siempre verificar que el servidor FastAPI esté corriendo en http://127.0.0.1:8000
+ *   con el comando: uvicorn backend.main:app --reload
+ * ============================================================================
+ */
+
+
