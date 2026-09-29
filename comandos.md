@@ -1,5 +1,6 @@
 # crea un entorno virutal desde cero (venv)
 python3 -m venv .venv
+
 # agregar una libreria ejemplo (pandas)
 pip install pandas
 

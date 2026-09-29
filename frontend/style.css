@@ -43,6 +43,42 @@ body {
     font-size: 1rem;
 }
 
+/* 1. Contenedor de la barra de navegación */
+.method-selector {
+    display: flex;
+    justify-content: center; /* Centra los botones horizontalmente */
+    align-items: center;     /* Centra los botones verticalmente */
+    gap: 12px;               /* Opcional: Espacio entre botón y botón */
+    margin: 20px 0;          /* Margen arriba y abajo para separarlo del header */
+}
+
+/* 2. Estilo base para cada botón (btn-tab) */
+.btn-tab {
+    padding: 10px 20px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #4b5563;
+    background-color: #e5e7eb;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+/* 3. Efecto al pasar el cursor (Hover) */
+.btn-tab:hover {
+    background-color: #d1d5db;
+    color: #111827;
+}
+
+/* 4. Estilo para el botón activo (la pestaña seleccionada) */
+.btn-tab.active {
+    background-color: #2563eb; /* Azul primario */
+    color: #ffffff;
+    border-color: #2563eb;
+}
+
+
 /* --- 4. Layout y Tarjetas --- */
 .dashboard-container {
     max-width: 900px;
@@ -69,11 +105,11 @@ body {
 }
 
 /* --- 5. Estilos del Formulario --- */
-#mixto-form {
+/* #mixto-form {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 15px;
-}
+} */
 
 .form-group {
     display: flex;

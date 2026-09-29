@@ -2,54 +2,110 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1-0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PRNG Simulation Dashboard</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
     <header class="app-header">
         <h1>PRNG Simulation Dashboard</h1>
         <p>Generación y Análisis Estadístico de Números Pseudoaleatorios</p>
     </header>
+
+    <nav class="method-selector">
+        <button id="btn-mixto" class="btn-tab active">Congruencial Mixto</button>
+        <button id="btn-mult" class="btn-tab">Congruencial Multiplicativo</button>
+        <button id="btn-cuad" class="btn-tab">Cuadrados Medios</button>
+    </nav>
+
+
     <main class="dashboard-container">
+
+
         <!--TARJETA DEL FORMULARIO: CONGRUENCIAL MIXTO-->
-        <section class="card">
+        <section class="card method-card" id="card-mixto">
             <h2>Metodo Congruencial Mixto</h2>
             <form id="mixto-form">
                 <div class="form-group">
-                    <label for="seed">Semilla Inicial (X0):</label>
-                    <input type="number" id="seed" name="seed" required placeholder="Ej: 3456">
+                    <label for="mixto-seed">Semilla Inicial (X0):</label>
+                    <input type="number" id="mixto-seed" name="seed" required placeholder="Ej: 3456">
                 </div>
 
                 <div class="form-group">
-                    <label for="a">Multiplicador (a):</label>
-                    <input type="number" id="a" name="a" required placeholder="Ej: 5">
+                    <label for="mixto-a">Multiplicador (a):</label>
+                    <input type="number" id="mixto-a" name="a" required placeholder="Ej: 5">
                 </div>
 
                 <div class="form-group">
-                    <label for="c">Incremento (c):</label>
-                    <input type="number" id="c" name="c" required placeholder="Ej: 7">
+                    <label for="mixto-c">Incremento (c):</label>
+                    <input type="number" id="mixto-c" name="c" required placeholder="Ej: 7">
                 </div>
 
                 <div class="form-group">
-                    <label for="m">Módulo (m):</label>
-                    <input type="number" id="m" name="m" required placeholder="Ej: 8">
+                    <label for="mixto-m">Módulo (m):</label>
+                    <input type="number" id="mixto-m" name="m" required placeholder="Ej: 8">
                 </div>
 
                 <div class="form-group">
-                    <label for="iterations">Iteraciones:</label>
-                    <input type="number" id="iterations" name="iterations" value="10" min="1">
+                    <label for="mixto-iterations">Iteraciones:</label>
+                    <input type="number" id="mixto-iterations" name="iterations" value="10" min="1">
                 </div>  
                 <button type="submit" class="btn-primary">Simular</button>
             </form>
         </section>
+
+
         <!--DEJAMOS AQUI LA CREACION DE NUEVOS METODOS-->
-        <section class="card">
+        <section class="card method-card" id="card-mult" style="display: none;">
             <h2>Metodo Congruencial Multiplicativo</h2>
             <form id="mult-form">
+                <div class="form-group">
+                    <label for="mult-seed">Semilla Inicial (X0):</label>
+                    <input type="number" id="mult-seed" name="seed" required placeholder="Ej: 3456">
+                </div>
 
+                <div class="form-group">
+                    <label for="mult-a">Multiplicador (a):</label>
+                    <input type="number" id="mult-a" name="a" required placeholder="Ej: 5">
+                </div>
+
+                <div class="form-group">
+                    <label for="mult-m">Módulo (m):</label>
+                    <input type="number" id="mult-m" name="m" required placeholder="Ej: 8">
+                </div>
+
+                <div class="form-group">
+                    <label for="mult-iterations">Iteraciones:</label>
+                    <input type="number" id="mult-iterations" name="iterations" value="10" min="1">
+                </div>  
+                <button type="submit" class="btn-primary">Simular</button>
             </form>
         </section>
+
+
+        <section class="card method-card" id="card-cuad" style="display: none;">
+            <h2>Metodo Cuadrados Medios</h2>
+            <form id="cuadradom-form">
+                <div class="form-group">
+                    <label for="cuad-seed">Semilla Inicial (X0):</label>
+                    <input type="number" id="cuad-seed" name="seed" required placeholder="Ej: 3456">
+                </div>
+
+                <div class="form-group">
+                    <label for="cuad-digits">Digitos (a):</label>
+                    <input type="number" id="cuad-digits" name="digits" required placeholder="Ej: 5">
+                </div>
+
+                <div class="form-group">
+                    <label for="cuad-iterations">Iteraciones:</label>
+                    <input type="number" id="cuad-iterations" name="iterations" value="10" min="1">
+                </div>  
+                <button type="submit" class="btn-primary">Simular</button>
+            </form>
+        </section>
+
+
         <!-- Tarjeta de Resultados: Tabla y Gráfico -->
         <section class="card results-card" id="results-section" style="display: none;">
             <h2>Resultados de la Simulación</h2>
@@ -76,9 +132,11 @@
                 </table>
             </div>
         </section>
+
+
     </main>
 
     <!-- Script de lógica de JavaScript -->
-    <script src="app.js"></script>
+    <script type="module" src="js/app.js"></script>
 </body>
 </html>
