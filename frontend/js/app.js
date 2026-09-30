@@ -24,34 +24,63 @@ document.getElementById('btn-cuad').addEventListener('click', () => {
     showMethodCard('card-cuad');
 });
 
+// --- 3. Envio del Formulario: Método Congruencial Mixto ---
+document.getElementById('mixto-form').addEventListener('submit', async function(event) {
+    event.preventDefault();
 
-/*
- *
- * 3️⃣ REFACTORIZAR: frontend/js/app.js (El Orquestador / Punto de Entrada)
- *    - Ubicación actual: Mover a frontend/js/app.js.
- *    - ¿Qué hace?: Conecta los eventos del usuario con los módulos api.js y ui.js.
- *    - Pasos en este archivo:
- *      a) Importar las funciones de api.js y ui.js al inicio del archivo:
- *         import { fetchCongruencialMixto } from './api.js';
- *         import { renderResultsTable, showErrorAlert } from './ui.js';
- *      b) Escuchar los eventos 'submit' de los formularios.
- *      c) Prevenir la recarga de página con event.preventDefault().
- *      d) Extraer los valores numéricos del formulario con parseInt().
- *      e) Llamar a la función de api.js con await.
- *      f) Enviar la respuesta recibida a la función renderResultsTable() de ui.js.
- *
- * 4️⃣ ACTUALIZAR: frontend/index.html (Vinculación Modular en HTML)
- *    - ¿Qué hace?: Indicarle al navegador que app.js opera como un módulo ES6.
- *    - Cambio en la etiqueta script al final del <body>:
- *      <script type="module" src="js/app.js"></script>
- *
- * ----------------------------------------------------------------------------
- * 💡 RECORDATORIOS TÉCNICOS CLAVE:
- * - La propiedad type="module" en HTML es INDISPENSABLE para habilitar 'import/export'.
- * - Siempre usar preventDefault() para evitar el refresco por defecto del formulario.
- * - Siempre verificar que el servidor FastAPI esté corriendo en http://127.0.0.1:8000
- *   con el comando: uvicorn backend.main:app --reload
- * ============================================================================
- */
+    const requestData = {
+        seed: parseInt(document.getElementById('mixto-seed').value),
+        a: parseInt(document.getElementById('mixto-a').value),
+        c: parseInt(document.getElementById('mixto-c').value),
+        m: parseInt(document.getElementById('mixto-m').value),
+        iterations: parseInt(document.getElementById('mixto-iterations').value)
+    };
+
+    try {
+        const result = await fetchCongruencialMixto(requestData);
+        renderResultsTable(result.data);
+    } catch (error){
+        console.error("Error al generar la simulación mixta:", error);
+        alert("Ocurrió un error al conectar con el servidor.");
+    }
+});
+
+document.getElementById('mult-form').addEventListener('submit', async function(event){
+    event.preventDefault();
+
+    const requestData = {
+        seed: parseInt(document.getElementById('mult-seed').value),
+        a: parseInt(document.getElementById('mult-a').value),
+        m: parseInt(document.getElementById('mult-m').value),
+        iterations: parseInt(document.getElementById('mult-iterations').value)
+    };
+
+    try {
+        const result = await fetchCongruencialMultiplicativo(requestData);
+        renderResultsTable(result.data);
+    } catch (error){
+        console.error("Error al generar la simulación multiplicativa:", error);
+        alert("Ocurrió un error al conectar con el servidor.");
+    }
+});
+
+document.getElementById('cuadradom-form').addEventListener('submit', async function(event){
+    event.preventDefault();
+
+    const requestData = {
+        seed: parseInt(document.getElementById('cuad-seed').value),
+        digits: parseInt(document.getElementById('cuad-digits').value),
+        iterations: parseInt(document.getElementById('cuad-iterations').value)
+    };
+
+    try {
+        const result = await fetchCuadradosMedios(requestData);
+        renderResultsTable(result.data);
+    } catch (error){
+        console.error("Error al generar la simulación de cuadrados medios:", error);
+        alert("Ocurrió un error al conectar con el servidor.");
+    }
+});
+
 
 
